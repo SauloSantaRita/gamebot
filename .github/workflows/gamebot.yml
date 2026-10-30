@@ -3,7 +3,7 @@ name: GameBot
 on:
   schedule:
     - cron: "0 10 * * *"   # notícias: 1x por dia, 07:00 de Brasília
-    - cron: "0 11 * * *"    # promoções: 1x por dia, 08:00 de Brasília
+    - cron: "0 21 * * *"    # promoções: 1x por dia, 19:00 de Brasília
   workflow_dispatch:
     inputs:
       mode:
