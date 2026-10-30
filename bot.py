@@ -36,7 +36,7 @@ FEEDS = [
     "https://www.pcgamer.com/rss/",                 # PC Gamer [2]
     "https://www.gamespot.com/feeds/mashup/",       # GameSpot [4]
 ]
-MAX_NEWS_PER_RUN = 1        # limite de notícias por execução
+MAX_NEWS_PER_RUN = 2        # limite de notícias por execução
 FIRST_RUN_NEWS = 3          # na 1ª execução, posta só as N mais recentes
 MIN_DISCOUNT = 20           # desconto mínimo (%) para entrar nas promoções
 MAX_DEALS = 20              # máximo de promoções por postagem (limite do Discord: 10 embeds)
