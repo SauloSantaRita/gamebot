@@ -20,9 +20,8 @@ import requests
 # ----------------------------- CONFIGURAÇÃO ------------------------------
 FEEDS = [
     # --- Fontes em Português (Brasil) ---
-    "https://br.ign.com/feed.xml",                  # IGN Brasil (Corrigido e ativo)
+    
     "https://adrenaline.com.br",          # Adrenaline (Focado em PC, Hardware e Games)
-    "https://canaltech.com.br",               # Canaltech (Seção geral tech e games)
     "https://jornaldosjogos.com.br",# Jornal dos Jogos (Excelente newsletter independente)
     "https://meups.com.br",                   # MeuPlayStation (Focado em ecossistema PlayStation/Geral)
     "https://comboinfinito.com.br",       # Combo Infinito (Cobertura geral e cultura pop)
@@ -37,10 +36,10 @@ FEEDS = [
     "https://www.pcgamer.com/rss/",                 # PC Gamer [2]
     "https://www.gamespot.com/feeds/mashup/",       # GameSpot [4]
 ]
-MAX_NEWS_PER_RUN = 8        # limite de notícias por execução
+MAX_NEWS_PER_RUN = 1        # limite de notícias por execução
 FIRST_RUN_NEWS = 3          # na 1ª execução, posta só as N mais recentes
 MIN_DISCOUNT = 20           # desconto mínimo (%) para entrar nas promoções
-MAX_DEALS = 10              # máximo de promoções por postagem (limite do Discord: 10 embeds)
+MAX_DEALS = 20              # máximo de promoções por postagem (limite do Discord: 10 embeds)
 STEAM_COUNTRY = "br"        # preços em R$
 STEAM_LANG = "portuguese"
 BOT_NAME = "GameBot"
