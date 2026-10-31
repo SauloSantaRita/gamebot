@@ -16,6 +16,8 @@ from pathlib import Path
 
 import feedparser
 import requests
+import socket
+socket.setdefaulttimeout(20)   # desiste de um feed após 20 segundos sem resposta
 
 # ----------------------------- CONFIGURAÇÃO ------------------------------
 FEEDS = [
@@ -111,6 +113,7 @@ def run_news():
     new = []
 
     for url in FEEDS:
+        print(f"Lendo {url}", flush=True)
         try:
             feed = feedparser.parse(url, agent=UA)
         except Exception as ex:
