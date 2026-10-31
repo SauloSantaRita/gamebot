@@ -21,22 +21,10 @@ socket.setdefaulttimeout(20)   # desiste de um feed após 20 segundos sem respos
 
 # ----------------------------- CONFIGURAÇÃO ------------------------------
 FEEDS = [
-    # --- Fontes em Português (Brasil) ---
-    
-    "https://adrenaline.com.br",          # Adrenaline (Focado em PC, Hardware e Games)
-    "https://jornaldosjogos.com.br",# Jornal dos Jogos (Excelente newsletter independente)
-    "https://meups.com.br",                   # MeuPlayStation (Focado em ecossistema PlayStation/Geral)
-    "https://comboinfinito.com.br",       # Combo Infinito (Cobertura geral e cultura pop)
-    "https://ovicio.com.br",   # O Vício (Seção dedicada a games)
-
-    # --- Fontes em Português (Portugal) ---
-    "https://eurogamer.pt",           # Eurogamer PT (Filtrado apenas para Notícias) [2, 3]
-    "https://gamereactor.pt",       # Gamereactor PT (URL corrigida com o protocolo)
-
-    # --- Fontes em Inglês (Seu backup atual) ---
+    "https://br.ign.com/feed.xml",                  # IGN Brasil
     "https://feeds.feedburner.com/ign/games-all",   # IGN US
-    "https://www.pcgamer.com/rss/",                 # PC Gamer [2]
-    "https://www.gamespot.com/feeds/mashup/",       # GameSpot [4]
+    "https://www.pcgamer.com/rss/",                 # PC Gamer
+    "https://www.gamespot.com/feeds/mashup/",       # GameSpot
 ]
 MAX_NEWS_PER_RUN = 2        # limite de notícias por execução
 FIRST_RUN_NEWS = 3          # na 1ª execução, posta só as N mais recentes
@@ -116,6 +104,7 @@ def run_news():
         print(f"Lendo {url}", flush=True)
         try:
             feed = feedparser.parse(url, agent=UA)
+            print(f"  -> {len(feed.entries)} item(ns)", flush=True)
         except Exception as ex:
             print(f"Falha em {url}: {ex}")
             continue
