@@ -30,6 +30,7 @@ MAX_NEWS_PER_RUN = 2        # limite de notícias por execução
 FIRST_RUN_NEWS = 3          # na 1ª execução, posta só as N mais recentes
 MIN_DISCOUNT = 20           # desconto mínimo (%) para entrar nas promoções
 MAX_DEALS = 20              # máximo de promoções por postagem (limite do Discord: 10 embeds)
+DEDUPE_DEALS = False        # False = posta a lista do dia sempre, mesmo se repetir
 STEAM_COUNTRY = "br"        # preços em R$
 STEAM_LANG = "portuguese"
 BOT_NAME = "GameBot"
@@ -156,11 +157,12 @@ def run_deals():
     )
     r.raise_for_status()
     items = r.json().get("specials", {}).get("items", [])
+    print(f"Steam retornou {len(items)} item(ns) em promoção", flush=True)
 
     deals = []
     for it in items:
         key = f"{it['id']}:{it.get('discount_percent', 0)}"
-        if it.get("discounted") and it.get("discount_percent", 0) >= MIN_DISCOUNT and key not in state["deals"]:
+        if it.get("discounted") and it.get("discount_percent", 0) >= MIN_DISCOUNT and (not DEDUPE_DEALS or key not in state["deals"]):
             deals.append((key, it))
     deals.sort(key=lambda x: x[1]["discount_percent"], reverse=True)
     deals = deals[:MAX_DEALS]
