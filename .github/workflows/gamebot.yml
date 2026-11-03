@@ -2,8 +2,8 @@ name: GameBot
 
 on:
   schedule:
-    - cron: "0 10 * * *"   # notícias: 1x por dia, 07:00 de Brasília
-    - cron: "0 22 * * *"    # promoções: 1x por dia, 19:00 de Brasília
+    - cron: "17 10 * * *"   # notícias: ~07:17 de Brasília
+    - cron: "17 22 * * *"   # promoções Steam: ~19:17 de Brasília
   workflow_dispatch:
     inputs:
       mode:
@@ -34,8 +34,9 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode }}"
           if [ -z "$MODE" ]; then
-            if [ "${{ github.event.schedule }}" = "0 11 * * *" ]; then MODE=deals; else MODE=news; fi
+            if [ "${{ github.event.schedule }}" = "17 22 * * *" ]; then MODE=deals; else MODE=news; fi
           fi
+          echo "Modo: $MODE"
           python bot.py "$MODE"
       - name: Salvar estado (evita repetir posts)
         run: |
